@@ -6,10 +6,10 @@
     "magic-grid": "^3.2.4",
     "react-bootstrap": "^2.7.2",
     "react-dom": "^18.2.0",
-    "react-scripts": "^5.0.1"
+    "react-scripts": "^2.1.3"
   },
   "scripts": {
-    "start": "npm install && npm audit fix --force && react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
