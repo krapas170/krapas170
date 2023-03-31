@@ -19,35 +19,45 @@ function Projects() {
     <Container id="work">
       <h1>Work</h1>
       <p>My last four works that I uploaded to GitHub</p>
-      <Row>
-        {projects.map((project) => (
-          <Col md={6}>
-            <a href={project.html_url} target="_blank">
-              <section>
-                <div className="section_title">{project.name}</div>
-                <div className="about_section">
-                  <span style={{ display: "block" }}>
-                    {project.description}
-                  </span>
-                </div>
-                <div className="bottom_section">
-                  <span style={{ display: "inline-block" }}>
-                    <i className="fas fa-code"></i>&nbsp;
-                    {project.language || "Unknown"}
-                  </span>
-                  <span>
-                    <i className="fas fa-star"></i>&nbsp;{project.forks}
-                  </span>
-                  <span>
-                    <i className="fas fa-code-branch"></i>&nbsp;
-                    {project.stargazers_count}
-                  </span>
-                </div>
-              </section>
-            </a>
-          </Col>
-        ))}
-      </Row>
+      <div
+        className="projects"
+        id="work_section"
+        style={{ position: "relative" }}
+      >
+        <Row>
+          {projects.map((project) => (
+            <Col sm={6} key={project.id}>
+              <a
+                href={project.html_url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <section>
+                  <div className="section_title">{project.name}</div>
+                  <div className="about_section">
+                    <span style={{ display: "block" }}>
+                      {project.description}
+                    </span>
+                  </div>
+                  <div className="bottom_section">
+                    <span style={{ display: "inline-block" }}>
+                      <i className="fas fa-code"></i>&nbsp;
+                      {project.language || "Unknown"}
+                    </span>
+                    <span>
+                      <i className="fas fa-star"></i>&nbsp;{project.forks}
+                    </span>
+                    <span>
+                      <i className="fas fa-code-branch"></i>&nbsp;
+                      {project.stargazers_count}
+                    </span>
+                  </div>
+                </section>
+              </a>
+            </Col>
+          ))}
+        </Row>
+      </div>
     </Container>
   );
 }
