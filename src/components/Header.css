@@ -1,0 +1,50 @@
+header {
+    width: 100vw;
+    text-align: center;
+    padding: 3vh 0px;
+    position: fixed;
+    z-index: 100;
+  }
+  
+  header a {
+    color: var(--text-color);
+    text-decoration: none;
+    margin-left: 4vw;
+    font-weight: bold;
+  }
+  
+  .navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin-left: 4vw;
+  }
+  
+  .nav-link {
+    font-weight: bold;
+    margin-left: 4vw;
+  }
+  
+  .nav-link:hover {
+    color: var(--primary-color);
+    text-decoration: none;
+  }
+  
+  @media (max-width: 767px) {
+    header {
+      width: 100%;
+      padding: 1.5rem 0;
+    }
+  
+    .navbar-brand {
+      margin-left: 0;
+    }
+  
+    .nav-link {
+      margin-left: 0;
+    }
+  }
+
+.scrolled {
+  background-color: rgba(0, 0, 0, 0.8);
+  height: calc(3vh - 20px);
+}
