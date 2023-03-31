@@ -1,15 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 
 const Profile = () => {
+  const [bio, setBio] = useState("");
+
+  useEffect(() => {
+    const url = "https://api.github.com/users/krapas170";
+
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        setBio(data.bio);
+      });
+  }, []);
+
   return (
     <Container id="profile">
       <Row>
         <Col
           id="profile_img"
           style={{
-            background:
-              "url(https://avatars.githubusercontent.com/u/57595818?v=4) center;",
+            background: "url(%PUBLIC_URL%/profile-img.jpg) center,",
           }}
         ></Col>
       </Row>
@@ -21,7 +32,7 @@ const Profile = () => {
       </Row>
       <Row>
         <Col id="userbio" style={{ display: "none" }}>
-          undefined
+          {bio}
         </Col>
       </Row>
       <Row>
@@ -39,49 +50,77 @@ const Profile = () => {
           </span>
           <span>
             <i className="fas fa-link"></i> &nbsp;{" "}
-            <a href="https://krapas170.github.io">krapas170.github.io</a>
+            <a href="https://krapas170.de">krapas170.de</a>
           </span>
           <span>
-            <i className="fas fa-map-marker-alt"></i> &nbsp;&nbsp; Allgäu
+            <i className="fas fa-map-marker-alt"></i> &nbsp;&nbsp; Allgäu in Germany
           </span>
           <span style={{ display: "none" }}>
             <i className="fas fa-user-tie"></i> &nbsp;&nbsp; Available for hire
           </span>
           <div className="socials">
-            <span style={{ display: "none !important" }}>
-              <a
-                href="https://www.twitter.com/null"
-                target="_blank"
-                className="socials"
-              >
-                <i className="fab fa-twitter"></i>
-              </a>
-            </span>
-            <span style={{ display: "none !important" }}>
-              <a
-                href="https://www.dribbble.com/null"
-                target="_blank"
-                className="socials"
-              >
-                <i className="fab fa-dribbble"></i>
-              </a>
-            </span>
+            {/*
+                      <span style={{ display: "none !important" }}>
+                        <a
+                          href="https://www.twitter.com/null"
+                          target="_blank"
+                          className="socials"
+                          rel="noopener noreferrer"
+                        >
+                          <i className="fab fa-twitter"></i>
+                        </a>
+                      </span>
+                      <span style={{ display: "none !important" }}>
+                        <a
+                          href="https://www.dribbble.com/null"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="socials"
+                        >
+                          <i className="fab fa-dribbble"></i>
+                        </a>
+                      </span>
+            */}
             <span>
               <a
-                href="https://www.linkedin.com/in/pascal-kray-471700219/"
+                href="https://linkedin.com/in/pascal-kray-471700219/"
                 target="_blank"
+                rel="noopener noreferrer"
                 className="socials"
               >
                 <i className="fab fa-linkedin-in"></i>
               </a>
             </span>
-            <span style={{ display: "none !important" }}>
+            {/*
+                      <span style={{ display: "none !important" }}>
+                        <a
+                          href="https://www.medium.com/@null/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="socials"
+                        >
+                          <i className="fab fa-medium-m"></i>
+                        </a>
+                      </span>
+            */}
+            <span>
               <a
-                href="https://www.medium.com/@null/"
+                href="https://github.com/krapas170/"
                 target="_blank"
+                rel="noopener noreferrer"
                 className="socials"
               >
-                <i className="fab fa-medium-m"></i>
+                <i className="fab fa-github"></i>
+              </a>
+            </span>
+            <span>
+              <a
+                href="https://m.facebook.com/pascal.kray/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="socials"
+              >
+                <i className="fab fa-facebook"></i>
               </a>
             </span>
           </div>
