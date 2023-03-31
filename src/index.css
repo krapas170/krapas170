@@ -559,13 +559,13 @@ body {
       rgba(10, 10, 10, 0.3),
       rgb(10, 10, 10, 1)
     ),
-    url("https://krapas170.github.io/background.jfif");
+    url("img/background.jfif");
   --background-background: linear-gradient(
       0deg,
       rgba(10, 10, 10, 1),
       rgba(10, 10, 10, 0.6)
     ),
-    url("https://krapas170.github.io/background.jfif") center center fixed;
+    url("img/background.jfif") center center fixed;
   --height: 50vh;
 }
 
@@ -596,7 +596,7 @@ body {
         rgba(10, 10, 10, 1),
         rgba(10, 10, 10, 0)
       ),
-      url("https://krapas170.github.io/background.jfif") !important;
+      url("img/background.jfif") !important;
   }
 
   #forks_section {
