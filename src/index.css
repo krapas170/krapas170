@@ -184,20 +184,6 @@ body {
   border: 1px solid rgb(0, 0, 0, 0.08);
 }
 
-#header {
-  width: 63vw;
-  text-align: right;
-  padding: 3vh 0px;
-  position: absolute;
-}
-
-#header a {
-  color: var(--text-color);
-  text-decoration: none;
-  margin-left: 4vw;
-  font-weight: bold;
-}
-
 #footer_blog {
   width: 100%;
   padding: 8vh 5vw;
@@ -234,6 +220,7 @@ body {
   border-radius: 5px;
   background-size: cover !important;
   background-repeat: no-repeat !important;
+  background: var(--profile-image) center;
 }
 
 #profile div {
@@ -244,6 +231,8 @@ body {
 #username {
   font-size: 18px;
   font-weight: bold;
+  display: flex;
+  flex-direction: column;
 }
 
 #username span {
@@ -290,7 +279,6 @@ body {
 #forks {
   margin: 2vh 0px;
   padding: 4vh 0px !important;
-  columns: 1;
 }
 
 .projects {
@@ -567,6 +555,7 @@ body {
     ),
     url("img/background.jfif") center center fixed;
   --height: 50vh;
+  --profile-image: url("img/profile-img.jpg");
 }
 
 #display h1 {
@@ -660,12 +649,12 @@ a {
 
 @media (min-width: 801px) {
   #forks_section {
-    columns: 2;
+    /*columns: 2;*/
     transform: none !important;
   }
 
   #work_section {
-    columns: 2;
+    /*columns: 2;*/
     transform: none !important;
   }
 }
