@@ -16,7 +16,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "deploy": "npm run build && firebase deploy",
-    "rin": "reinstall"
+    "rin": "reinstall && npm update"
   },
   "eslintConfig": {
     "extends": [
