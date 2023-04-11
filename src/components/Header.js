@@ -1,23 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import "./Header.css";
 
 function Header() {
-  // eslint-disable-next-line
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.pageYOffset > 0) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
     <header>
       <Navbar bg="light" expand="lg">

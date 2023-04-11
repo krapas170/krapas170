@@ -51,21 +51,6 @@ body {
   }
 }
 
-#profile {
-  width: 24vw;
-  padding: 4vh 3vw;
-  height: 92vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: left;
-  background: var(--background-image) center center;
-  background-size: cover !important;
-  background-repeat: no-repeat;
-  position: fixed;
-  color: #fff !important;
-}
-
 #display {
   width: 64vw;
   padding: 4vh 3vw;
@@ -79,6 +64,9 @@ body {
   color: var(--text-color);
   font-weight: bold;
   font-family: "Questrial", sans-serif;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: #fff;
 }
 
 .emoji {
@@ -118,6 +106,8 @@ body {
   text-align: left;
   margin-top: 3vh;
   z-index: 1;
+  padding: 1vh 0px;
+  font-family: "Questrial", sans-serif;
 }
 
 #profile_blog {
@@ -153,15 +143,13 @@ body {
   color: var(--text-color);
   font-weight: bold;
   font-family: "Questrial", sans-serif;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: #fff;
 }
 
 #blog-display h2 {
   color: var(--blog-gray-color);
-}
-
-#blog-display {
-  padding: 1vh 0px;
-  font-family: "Questrial", sans-serif;
 }
 
 #blog p {
@@ -210,67 +198,6 @@ body {
   font-weight: bold;
 }
 
-#profile_img {
-  width: 180px;
-  height: 180px;
-  min-width: 180px;
-  min-height: 180px;
-  max-width: 180px;
-  max-height: 180px;
-  border-radius: 5px;
-  background-size: cover !important;
-  background-repeat: no-repeat !important;
-  background: var(--profile-image) center;
-}
-
-#profile div {
-  font-weight: bold;
-  margin: 1.5vh 0px;
-}
-
-#username {
-  font-size: 18px;
-  font-weight: bold;
-  display: flex;
-  flex-direction: column;
-}
-
-#username span {
-  font-size: 24px;
-}
-
-#userbio {
-  font-size: 26px;
-  font-family: "Questrial", sans-serif;
-  width: 100%;
-}
-
-#about {
-  font-size: 18px;
-  font-family: "Questrial", sans-serif;
-}
-
-#about a,
-#username a {
-  color: #fff !important;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-#about a:hover,
-#username a:hover {
-  text-decoration: underline;
-}
-
-#about span {
-  margin: 1vh 0px;
-  display: block;
-}
-
-#about span i {
-  font-size: 16px;
-}
-
 #work {
   margin: 2vh 0px;
   padding: 4vh 0px !important;
@@ -306,6 +233,7 @@ body {
   box-shadow: 0px 0px 0px rgb(0, 0, 0, 0);
   transition: 0.4s ease-in-out;
   transform: scale(1);
+  background: rgb(20, 20, 20);
 }
 
 .projects section:hover {
@@ -344,22 +272,6 @@ body {
 
 .bottom_section span i {
   font-size: 15px;
-}
-
-.socials {
-  color: #fff;
-  text-decoration: none;
-  margin: 3vh 0px !important;
-}
-
-.socials span {
-  display: inline-block !important;
-  margin-right: 2vw !important;
-  font-weight: normal !important;
-}
-
-.socials span a {
-  font-weight: normal !important;
 }
 
 #blog_section {
@@ -423,30 +335,12 @@ body {
 }
 
 @media (max-width: 800px) {
-  #profile {
-    width: 90vw;
-    padding: 4vh 5vw;
-    height: 60vh;
-    text-align: center;
-    position: relative;
-  }
-
   #display {
     width: 90vw;
     padding: 4vh 5vw;
     height: auto;
     display: inline-block;
     padding-left: 5vw;
-  }
-
-  #profile_img {
-    width: 120px;
-    height: 120px;
-    min-width: 120px;
-    min-height: 120px;
-    max-width: 120px;
-    max-height: 120px;
-    margin: 0px auto !important;
   }
 
   #work {
@@ -558,22 +452,6 @@ body {
   --profile-image: url("img/profile-img.jpg");
 }
 
-#display h1 {
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: #fff;
-}
-
-#blog-display h1 {
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: #fff;
-}
-
-.projects section {
-  background: rgb(20, 20, 20);
-}
-
 #blog_section section {
   background: rgb(20, 20, 20);
 }
@@ -611,7 +489,6 @@ body {
   font-size: 14px;
   line-height: 1.5;
   color: var(--color-fg-default);
-  background-color: var(--color-canvas-default);
 }
 
 tt,
