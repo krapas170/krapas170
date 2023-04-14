@@ -17,7 +17,7 @@ function App() {
         <Sidebar />
         <Header />
         <TransitionGroup>
-          <CSSTransition timeout={500} classNames="fade" key={location.key}>
+          <CSSTransition timeout={500} classNames="fade" /*key={location.key}*/>
             <div id="display">
               <Routes>
                 <Route path="/" element={<About />} />
