@@ -7,9 +7,8 @@ import Blog from "./pages/Blog";
 import Contact from "./pages/Contact";
 import Forks from "./pages/Forks";
 import Projects from "./pages/Projects";
-import { Route, Switch } from "react-router";
-import { HashRouter as Router } from "react-router-dom";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
@@ -20,14 +19,14 @@ function App() {
         <TransitionGroup>
           <CSSTransition timeout={500} classNames="fade">
             <div id="display">
-              <Switch>
-                <Route exact path="/" component={Projects} />
-                <Route path="/about" component={About} />
-                <Route path="/work" component={Projects} />
-                <Route path="/forks" component={Forks} />
-                <Route path="/blog" component={Blog} />
-                <Route path="/contact" component={Contact} />
-              </Switch>
+              <Routes>
+                <Route path="/" element={<Projects />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/work" element={<Projects />} />
+                <Route path="/forks" element={<Forks />} />
+                <Route path="/blog" element={<Blog />} />
+                <Route path="/contact" element={<Contact />} />
+              </Routes>
             </div>
           </CSSTransition>
         </TransitionGroup>
