@@ -531,7 +531,7 @@ a {
 
 .fade-enter-active {
   opacity: 1;
-  transition: opacity 500ms ease-in;
+  transition: opacity 500ms ease-in-out;
 }
 
 .fade-exit {
@@ -540,7 +540,7 @@ a {
 
 .fade-exit-active {
   opacity: 0;
-  transition: opacity 500ms ease-in;
+  transition: opacity 500ms ease-in-out;
 }
 
 @media (min-width: 801px) {
