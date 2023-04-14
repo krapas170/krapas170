@@ -20,7 +20,7 @@ function App() {
           <CSSTransition timeout={500} classNames="fade" /*key={location.key}*/>
             <div id="display">
               <Routes>
-                <Route path="/" element={<About />} />
+                <Route path="/" element={<Projects />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/work" element={<Projects />} />
                 <Route path="/forks" element={<Forks />} />
