@@ -40,8 +40,8 @@ const Profile = () => {
         <Col id="about">
           <span>
             <i className="fas fa-users"></i> &nbsp;{" "}
-            <a href="https://creamate.de/">Creamate</a> {/*&{" "}
-            <a href="https://www.idkom.de/">ID.KOM Allgäu</a>*/}
+            <a href="https://creamate.de/">Creamate</a> &{" "}
+            <a href="https://www.idkom.de/">ID.KOM Allgäu</a>
           </span>
           <span>
             <i className="fas fa-envelope"></i> &nbsp;{" "}
