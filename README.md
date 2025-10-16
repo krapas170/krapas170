@@ -1,70 +1,68 @@
-# Getting Started with Create React App
+<!-- Banner -->
+<p align="center">
+  <img src="https://raw.githubusercontent.com/krapas170/assets/main/banner-dark.png" alt="Kray IT Allgäu Banner" width="100%">
+</p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+---
 
-## Available Scripts
+<h1 align="center">👋 Hey, ich bin Pascal — Gründer von Kray IT Allgäu</h1>
+<p align="center">
+  <strong>IT-Systemintegrator | Automation & Infrastructure Engineer | Selfhosted Enthusiast</strong>
+</p>
 
-In the project directory, you can run:
+---
 
-### `npm start`
+### 🚀 Über mich
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Ich liebe es, Systeme nicht nur zum Laufen zu bringen – sondern **sie zu verstehen, zu automatisieren und zu perfektionieren.**  
+Ob <ins>Docker-Infrastruktur</ins>, <ins>WireGuard-Netzwerke</ins> oder <ins>Automatisierung mit n8n</ins> – mein Ziel ist immer: **smart, effizient und elegant.**
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+🧠 Aktuell beschäftige ich mich intensiv mit:
+- 🐳 Container-Orchestrierung mit **Docker & Portainer**
+- 🔐 Site-to-Site-VPN-Architekturen auf Basis von **WireGuard**
+- 🤖 Prozessautomatisierung via **n8n & APIs**
+- 📊 Monitoring mit **Prometheus / Grafana**
+- ⚙️ Open-Source-ERP-Systemen wie **Dolibarr**
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 🧰 Tech-Stack
 
-### `npm run build`
+<p align="center">
+  <img src="https://skillicons.dev/icons?i=docker,linux,bash,python,php,html,js,git,mysql,prometheus,grafana" />
+  <br>
+  <img src="https://skillicons.dev/icons?i=cloudflare,nginx,wordpress,vscode" />
+</p>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 🌍 Projekte & Infrastruktur
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+| Projekt | Beschreibung | Stack |
+|----------|---------------|--------|
+| **kray-allgaeu.de** | Zentrale Website & IT-Service-Plattform | Nginx / Docker / Cloudflare |
+| **VPN-Netzwerk** | Vollautomatisiertes WireGuard-Setup mit Monitoring | WireGuard / Prometheus / Grafana |
+| **DDNS Service** | Eigenentwickelter DynDNS-Server mit Cloudflare-API-Integration | PHP / Cloudflare API / Docker |
+| **Zammad & n8n Automations** | Zeiterfassung, Ticketing und Excel-Reports über Workflows | n8n / Zammad / MySQL |
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 💬 Motto
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+> “Wenn etwas zweimal manuell gemacht werden muss, wird es beim dritten Mal automatisiert.”  
+> — *Pascal Kray, Kray IT Allgäu*
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 📫 Kontakt
 
-## Learn More
+<p align="center">
+  <a href="https://kray-allgaeu.de"><img src="https://img.shields.io/badge/🌐_Website-kray--allgaeu.de-blue?style=for-the-badge&logo=cloudflare"></a>
+  <a href="mailto:kontakt@kray-allgaeu.de"><img src="https://img.shields.io/badge/✉️_E-Mail-kontakt@kray--allgaeu.de-blue?style=for-the-badge&logo=gmail"></a>
+</p>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<p align="center">
+  <sub>🖤 Made with passion, coffee & automation — © 2025 Kray IT Allgäu</sub>
+</p>
