@@ -1,6 +1,6 @@
 <!-- Banner -->
 <p align="center">
-  <img src="https://raw.githubusercontent.com/krapas170/assets/main/banner-dark.png" alt="Kray IT Allgäu Banner" width="100%">
+  <img src="https://github.com/krapas170/krapas170/blob/73a368a201189bc91b2b5e806c01c4f497887fee/banner-dark.png" alt="Kray IT Allgäu Banner" width="100%">
 </p>
 
 ---
