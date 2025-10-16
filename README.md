@@ -58,7 +58,7 @@ Ob <ins>Docker-Infrastruktur</ins>, <ins>WireGuard-Netzwerke</ins> oder <ins>Aut
 
 <p align="center">
   <a href="https://kray-allgaeu.de"><img src="https://img.shields.io/badge/🌐_Website-kray--allgaeu.de-blue?style=for-the-badge&logo=cloudflare"></a>
-  <a href="mailto:kontakt@kray-allgaeu.de"><img src="https://img.shields.io/badge/✉️_E-Mail-kontakt@kray--allgaeu.de-blue?style=for-the-badge&logo=gmail"></a>
+  <a href="mailto:it@kray-allgaeu.de"><img src="https://img.shields.io/badge/✉️_E--Mail-it@kray--allgaeu.de-blue?style=for-the-badge&logo=microsoftexchange"></a>
 </p>
 
 ---
