@@ -21,7 +21,7 @@ Ob <ins>Docker-Infrastruktur</ins>, <ins>WireGuard-Netzwerke</ins> oder <ins>Aut
 - 🐳 Container-Orchestrierung mit **Docker & Portainer**
 - 🔐 Site-to-Site-VPN-Architekturen auf Basis von **WireGuard**
 - 🤖 Prozessautomatisierung via **n8n & APIs**
-- 📊 Monitoring mit **Prometheus / Grafana**
+- 📊 Monitoring mit **Prometheus / Grafana / Uptime Kuma**
 - ⚙️ Open-Source-ERP-Systemen wie **Dolibarr**
 
 ---
