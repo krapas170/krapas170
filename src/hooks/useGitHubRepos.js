@@ -4,9 +4,16 @@ import { GITHUB_USERNAME } from "../utils/site";
 const REPOS_URL = `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=pushed&per_page=100`;
 
 // The unauthenticated GitHub API allows 60 requests per hour and IP. Projects,
-// Forks and Sidebar all need the same payload, so it is fetched once, cached in
+// Forks and About all need the same payload, so it is fetched once, cached in
 // module scope and shared between them. Visitors behind a shared NAT would
 // otherwise burn through the quota three times as fast.
+//
+// Deliberately unpaginated: per_page=100 is the API maximum and this account has
+// 10 repositories. Following Link rel="next" would multiply requests against the
+// very quota this cache exists to protect. Should the account ever pass 100
+// repositories, the pages only ever show the four most recently pushed entries,
+// so only a fork that has not been pushed to in 100 repositories' time would
+// drop off.
 let cache = null;
 let inFlight = null;
 

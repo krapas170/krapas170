@@ -10,16 +10,12 @@ dist/
 .env.*
 !.env.example
 
-# Firebase service account keys and local state.
+# Cloudflare Wrangler local state.
 # Targeted patterns on purpose: a blanket "*.json" would also swallow
-# package.json, firebase.json and src/utils/*.json on the next `git add`.
-*-firebase-adminsdk-*.json
-serviceAccountKey.json
-service-account*.json
-.runtimeconfig.json
-.firebase/
-firebase-debug.log*
-firebaseConfig.js
+# package.json, wrangler.jsonc and src/utils/*.json on the next `git add`.
+.wrangler/
+.dev.vars
+.dev.vars.*
 
 # Logs
 npm-debug.log*

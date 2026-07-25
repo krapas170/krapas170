@@ -1,0 +1,8 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "krapas170",
+  // Matches build.outDir in vite.config.js. Keeping it here means the output
+  // directory is pinned in the repository rather than only in the Pages
+  // dashboard, and `wrangler pages deploy` works without extra flags.
+  "pages_build_output_dir": "build"
+}
