@@ -29,7 +29,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint .",
-    "deploy": "npm run build && wrangler pages deploy"
+    "deploy": "npm run build && wrangler deploy"
   },
   "browserslist": {
     "production": [

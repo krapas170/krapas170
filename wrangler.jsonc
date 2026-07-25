@@ -1,8 +1,12 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "krapas170",
-  // Matches build.outDir in vite.config.js. Keeping it here means the output
-  // directory is pinned in the repository rather than only in the Pages
-  // dashboard, and `wrangler pages deploy` works without extra flags.
-  "pages_build_output_dir": "build"
+  "compatibility_date": "2026-07-25",
+  "assets": {
+    // Matches build.outDir in vite.config.js.
+    "directory": "build",
+    // Client-side routing: /work, /about, … are not files on disk, so unmatched
+    // paths must fall back to index.html instead of returning 404.
+    "not_found_handling": "single-page-application"
+  }
 }
