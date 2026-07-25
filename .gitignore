@@ -1,26 +1,33 @@
-# Ignore node_modules directory
+# Dependencies
 node_modules/
 
-# Ignore build output directory
+# Build output
 build/
+dist/
 
-# Ignore .env file (contains sensitive information)
+# Environment files (may contain secrets)
 .env
+.env.*
+!.env.example
 
-# Ignore Firebase service account key file
-*.json
-
-# Ignore local configuration files
-firebase.json
+# Firebase service account keys and local state.
+# Targeted patterns on purpose: a blanket "*.json" would also swallow
+# package.json, firebase.json and src/utils/*.json on the next `git add`.
+*-firebase-adminsdk-*.json
+serviceAccountKey.json
+service-account*.json
+.runtimeconfig.json
+.firebase/
+firebase-debug.log*
 firebaseConfig.js
 
-# Ignore log files
+# Logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
 
-# Ignore .DS_Store files
+# Editor / OS
 .DS_Store
-
-# Ignore .vscode settings directory
 .vscode/
+.idea/

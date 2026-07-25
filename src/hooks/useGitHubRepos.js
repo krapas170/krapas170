@@ -1,0 +1,89 @@
+import { useEffect, useState } from "react";
+import { GITHUB_USERNAME } from "../utils/site";
+
+const REPOS_URL = `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=pushed&per_page=100`;
+
+// The unauthenticated GitHub API allows 60 requests per hour and IP. Projects,
+// Forks and Sidebar all need the same payload, so it is fetched once, cached in
+// module scope and shared between them. Visitors behind a shared NAT would
+// otherwise burn through the quota three times as fast.
+let cache = null;
+let inFlight = null;
+
+function fetchRepos() {
+  if (cache) return Promise.resolve(cache);
+  if (inFlight) return inFlight;
+
+  inFlight = fetch(REPOS_URL, {
+    headers: { Accept: "application/vnd.github+json" },
+  })
+    .then((response) => {
+      if (response.status === 403 || response.status === 429) {
+        throw new Error(
+          "GitHub's API rate limit is currently exhausted. Please try again later."
+        );
+      }
+      if (!response.ok) {
+        throw new Error(`GitHub API responded with ${response.status}.`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      // A rate-limited or errored response is a JSON *object*, not an array.
+      // Without this guard the next `.filter()`/`.slice()` throws.
+      if (!Array.isArray(data)) {
+        throw new Error("Unexpected response format from the GitHub API.");
+      }
+      cache = data;
+      return data;
+    })
+    .finally(() => {
+      inFlight = null;
+    });
+
+  return inFlight;
+}
+
+/**
+ * Loads the public repositories of GITHUB_USERNAME, sorted by last push.
+ *
+ * @param {(repos: object[]) => object[]} [select] optional filter/slice applied
+ *   to the raw repository list.
+ * @returns {{repos: object[], loading: boolean, error: string|null}}
+ */
+export function useGitHubRepos(select) {
+  const [state, setState] = useState({
+    repos: [],
+    loading: true,
+    error: null,
+  });
+
+  useEffect(() => {
+    let cancelled = false;
+
+    fetchRepos()
+      .then((data) => {
+        if (cancelled) return;
+        setState({
+          repos: select ? select(data) : data,
+          loading: false,
+          error: null,
+        });
+      })
+      .catch((err) => {
+        if (cancelled) return;
+        setState({ repos: [], loading: false, error: err.message });
+      });
+
+    // Prevents a state update after the component unmounted, which happens when
+    // a visitor clicks through the navigation faster than the request resolves.
+    return () => {
+      cancelled = true;
+    };
+    // `select` is intentionally omitted: callers pass an inline arrow function,
+    // which would change identity on every render and re-trigger the effect.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  return state;
+}
