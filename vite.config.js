@@ -5,7 +5,7 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   plugins: [react()],
   build: {
-    // Firebase Hosting serves from "build" (see firebase.json).
+    // Must match pages_build_output_dir in wrangler.jsonc.
     outDir: "build",
     sourcemap: false,
   },
