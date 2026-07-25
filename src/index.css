@@ -1,5 +1,6 @@
-@import url("https://fonts.googleapis.com/css?family=Poppins");
-@import url("https://fonts.googleapis.com/css?family=Questrial");
+/* Poppins and Questrial are self-hosted via @fontsource (imported in
+   main.jsx) so the page makes no third-party requests and the CSP can stay
+   restricted to 'self'. */
 
 html,
 body {
@@ -204,9 +205,40 @@ body {
   padding: 4vh 0px !important;
 }
 
-#forks {
+#forks,
+#blog,
+#about_page,
+#contact_page,
+#not_found {
   margin: 2vh 0px;
   padding: 4vh 0px !important;
+}
+
+.about_bio {
+  max-width: 40em;
+}
+
+.about_facts,
+.contact_list {
+  list-style: none;
+  padding: 0;
+  margin: 2vh 0px;
+}
+
+.about_facts li,
+.contact_list li {
+  margin: 1.2vh 0px;
+}
+
+.about_facts a,
+.contact_list a,
+#not_found a {
+  color: var(--text-color);
+  text-decoration: underline;
+}
+
+.contact_socials {
+  margin-top: 3vh;
 }
 
 .projects {
@@ -214,13 +246,29 @@ body {
   /* align section w/ heading above */
 }
 
-.projects a {
-  /* 30px is the gutter size in magic grid */
-  width: calc(99% - 10px);
+/* Two-column card layout, previously provided by the deprecated
+   react-grid-system Row/Col components. */
+.repo_grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 10px;
+}
+
+.projects a,
+.repo_grid article {
+  width: 100%;
   margin-bottom: 10px;
-  /* 49% avoids a weird single column on some wide screens */
   display: flex;
   text-decoration: none;
+}
+
+.repo_status {
+  margin: 2vh 15px;
+  color: var(--blog-gray-color);
+}
+
+.repo_error {
+  color: #ff8a8a;
 }
 
 .projects section {
@@ -351,6 +399,10 @@ body {
   .projects {
     margin-left: 0;
     /* remove neg margin to align w/ header */
+  }
+
+  .repo_grid {
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .projects a {
