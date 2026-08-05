@@ -27,11 +27,11 @@ function fetchRepos() {
     .then((response) => {
       if (response.status === 403 || response.status === 429) {
         throw new Error(
-          "GitHub's API rate limit is currently exhausted. Please try again later."
+          "Das Anfragelimit der GitHub-API ist momentan erschöpft. Bitte später erneut versuchen."
         );
       }
       if (!response.ok) {
-        throw new Error(`GitHub API responded with ${response.status}.`);
+        throw new Error(`Die GitHub-API hat mit Status ${response.status} geantwortet.`);
       }
       return response.json();
     })
@@ -39,7 +39,7 @@ function fetchRepos() {
       // A rate-limited or errored response is a JSON *object*, not an array.
       // Without this guard the next `.filter()`/`.slice()` throws.
       if (!Array.isArray(data)) {
-        throw new Error("Unexpected response format from the GitHub API.");
+        throw new Error("Unerwartetes Antwortformat der GitHub-API.");
       }
       cache = data;
       return data;

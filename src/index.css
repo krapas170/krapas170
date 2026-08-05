@@ -55,8 +55,10 @@ body {
 
 #display {
   width: 64vw;
-  padding: 4vh 3vw;
-  height: 92vh;
+  /* Reserve exactly the fixed header's height instead of a hand-tuned value, so
+     content starts flush below it and scrolls underneath from there. */
+  padding: var(--header-height) 3vw 4vh;
+  min-height: 70vh;
   display: inline-block;
   padding-left: 33vw;
 }
@@ -102,14 +104,24 @@ body {
   font-weight: bold;
 }
 
+/* The 60vw/20vw of the original static site assumed a full-width page with no
+   sidebar. Here the post sits inside #display, which already reserves 33vw for
+   the fixed sidebar, so it just fills its container. */
 #blog-display {
-  width: 60vw;
-  margin: 0px 20vw;
+  width: 100%;
+  margin: 0px;
   text-align: left;
   margin-top: 3vh;
-  z-index: 1;
+  position: relative;
+  z-index: 2;
   padding: 1vh 0px;
   font-family: "Questrial", sans-serif;
+}
+
+/* With a hero image the title drops into its lower, darker half, the way the
+   original page laid it out. Posts without an image keep the normal top. */
+#blog.has_hero #blog-display {
+  padding-top: 25vh;
 }
 
 #profile_blog {
@@ -120,24 +132,39 @@ body {
   z-index: 1;
 }
 
-#background_overlay {
-  width: 100vw;
-  height: 55vh;
+/* On the original site these were direct children of <body> and spanned the
+   whole viewport. Anchoring them to #blog keeps the hero inside the content
+   column instead of covering the fixed sidebar and header — and stops it
+   flashing at full width while the route crossfade has both pages mounted. */
+#blog {
+  position: relative;
+  /* flow-root contains #blog-display's 3vh top margin. Without it that margin
+     collapses through and drags #blog — and with it the absolutely positioned
+     hero — 3vh down, which is the gap that stayed under the header no matter
+     what `top` was set to. */
+  display: flow-root;
+}
+
+#background_overlay,
+#background {
+  width: 100%;
+  height: 40vh;
   position: absolute;
-  z-index: -1;
+  /* The header is in the flow now, so #blog already starts directly below it
+     and the hero needs no offset of its own. */
   top: 0;
   left: 0;
+  border-radius: 0px 0px 5px 5px;
+}
+
+#background_overlay {
+  z-index: 1;
 }
 
 #background {
-  width: 100vw;
-  height: 55vh;
   background-size: cover !important;
   background-repeat: no-repeat !important;
-  position: absolute;
-  z-index: -2;
-  top: 0;
-  left: 0;
+  z-index: 0;
 }
 
 #blog-display h1 {
@@ -379,12 +406,15 @@ body {
   transform: scale(1.03);
 }
 
+/* Plain flow content inside #blog-display. The original was absolutely
+   positioned against <body>, which no longer has a matching containing block
+   now that the post lives inside the padded #display column. */
 .go_back {
-  position: absolute;
+  display: inline-block;
   color: var(--text-color);
   font-size: 26px;
-  margin-left: 5vw;
-  margin-top: 4vh;
+  line-height: 1;
+  margin-bottom: 1vh;
   text-decoration: none;
 }
 
@@ -543,8 +573,9 @@ body {
 @media (max-width: 800px) {
   #display {
     width: 90vw;
-    padding: 4vh 5vw;
+    padding: var(--header-height) 5vw 4vh;
     height: auto;
+    min-height: 0;
     display: inline-block;
     padding-left: 5vw;
   }
@@ -583,11 +614,21 @@ body {
   }
 
   #blog-display {
-    width: 90vw;
-    margin: 0px 5vw;
+    width: 100%;
+    margin: 0px;
     text-align: left;
     margin-top: 0vh;
-    z-index: 1;
+    z-index: 2;
+  }
+
+  #blog.has_hero #blog-display {
+    padding-top: 18vh;
+  }
+
+  #background_overlay,
+  #background {
+    height: 30vh;
+    top: 0;
   }
 
   #blog_title {
@@ -613,11 +654,8 @@ body {
   }
 
   .go_back {
-    position: relative;
     color: var(--text-color);
     font-size: 26px;
-    margin-left: 5vw;
-    top: 5vh;
   }
 
   #blog img {
@@ -732,6 +770,18 @@ a {
   text-decoration: none;
   position: unset !important;
   transform: none !important;
+}
+
+/* TransitionGroup keeps the outgoing page mounted for the length of the
+   crossfade, so two #display elements exist at once. Both are inline-block, so
+   without this they stack vertically for 500ms and the page visibly jumps —
+   most obviously on a post with a hero image. Taking the outgoing one out of
+   flow makes them overlap instead. */
+#display.fade-exit,
+#display.fade-exit-active {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .fade-enter {

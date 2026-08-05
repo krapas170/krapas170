@@ -9,11 +9,11 @@ function About() {
   return (
     <Container id="about_page">
       <h1>About</h1>
-      <p>A little bit about me</p>
+      <p>Ein bisschen was über mich</p>
 
       {loading && (
         <p className="repo_status" role="status">
-          Loading profile…
+          Profil wird geladen …
         </p>
       )}
       {error && (
@@ -52,7 +52,7 @@ function About() {
             </li>
             <li>
               <i className="fa-solid fa-book" aria-hidden="true"></i> &nbsp;
-              {profile.public_repos} public repositories
+              {profile.public_repos} öffentliche Repositories
             </li>
           </ul>
         </div>

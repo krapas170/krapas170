@@ -25,9 +25,9 @@ function formatSize(bytes) {
 }
 
 function formatDate(iso) {
-  return new Date(iso).toLocaleDateString("en-GB", {
+  return new Date(iso).toLocaleDateString("de-DE", {
     day: "2-digit",
-    month: "short",
+    month: "long",
     year: "numeric",
   });
 }
@@ -41,7 +41,9 @@ function formatDate(iso) {
  */
 export function ReleaseCards({ releases }) {
   if (releases.length === 0) {
-    return <p className="repo_status">No releases published yet.</p>;
+    return (
+      <p className="repo_status">Noch keine Versionen veröffentlicht.</p>
+    );
   }
 
   const latest = releases[0];
@@ -49,7 +51,7 @@ export function ReleaseCards({ releases }) {
   return (
     <>
       <p className="current_version">
-        The latest version is{" "}
+        Die aktuellste Version ist{" "}
         <strong>
           <a
             href={latest.html_url}
@@ -59,7 +61,7 @@ export function ReleaseCards({ releases }) {
             {latest.tag_name}
           </a>
         </strong>{" "}
-        from {formatDate(latest.published_at)}
+        vom {formatDate(latest.published_at)}
       </p>
 
       {releases.map((release) => (
@@ -79,11 +81,11 @@ export function ReleaseCards({ releases }) {
 
           <div className="release_footer">
             <h3>
-              Assets
+              Dateien
               <span className="counter">{release.assets.length}</span>
             </h3>
             {release.assets.length === 0 ? (
-              <p className="release_empty">No downloadable assets.</p>
+              <p className="release_empty">Keine Dateien zum Herunterladen.</p>
             ) : (
               <ul className="release_assets">
                 {release.assets.map((asset) => (
@@ -122,7 +124,7 @@ export default function ReleaseList({ repo }) {
   if (loading) {
     return (
       <p className="repo_status" role="status">
-        Loading releases…
+        Versionen werden geladen …
       </p>
     );
   }

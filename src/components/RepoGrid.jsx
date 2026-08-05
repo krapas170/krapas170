@@ -5,19 +5,19 @@ function RepoCard({ repo }) {
         <div className="section_title">{repo.name}</div>
         <div className="about_section">
           <span style={{ display: "block" }}>
-            {repo.description || "No description provided."}
+            {repo.description || "Keine Beschreibung hinterlegt."}
           </span>
         </div>
         <div className="bottom_section">
           <span style={{ display: "inline-block" }}>
             <i className="fa-solid fa-code" aria-hidden="true"></i>&nbsp;
-            {repo.language || "Unknown"}
+            {repo.language || "Unbekannt"}
           </span>
-          <span title={`${repo.stargazers_count} stars`}>
+          <span title={`${repo.stargazers_count} Sterne`}>
             <i className="fa-solid fa-star" aria-hidden="true"></i>&nbsp;
             {repo.stargazers_count}
           </span>
-          <span title={`${repo.forks_count} forks`}>
+          <span title={`${repo.forks_count} Forks`}>
             <i className="fa-solid fa-code-branch" aria-hidden="true"></i>&nbsp;
             {repo.forks_count}
           </span>
@@ -35,7 +35,7 @@ export default function RepoGrid({ repos, loading, error, emptyMessage }) {
   if (loading) {
     return (
       <p className="repo_status" role="status">
-        Loading repositories…
+        Repositories werden geladen …
       </p>
     );
   }

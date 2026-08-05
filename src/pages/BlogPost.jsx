@@ -11,9 +11,9 @@ function BlogPost() {
     return (
       <Container id="not_found">
         <h1>404</h1>
-        <p>This post does not exist.</p>
+        <p>Diesen Beitrag gibt es nicht.</p>
         <p>
-          <Link to="/blog">Back to the blog</Link>
+          <Link to="/blog">Zurück zum Blog</Link>
         </p>
       </Container>
     );
@@ -23,11 +23,7 @@ function BlogPost() {
   const body = renderPostBody(slug);
 
   return (
-    <div id="blog">
-      <Link to="/blog" className="go_back" aria-label="Back to the blog">
-        &#8592;
-      </Link>
-
+    <div id="blog" className={image ? "has_hero" : undefined}>
       {/* Hero behind the title, styled by #background / #background_overlay in
           index.css. Skipped entirely when the image file is not present. */}
       {image && (
@@ -41,13 +37,18 @@ function BlogPost() {
       )}
 
       <div id="blog-display">
+        {/* In normal flow directly above the title, so it cannot drift out of
+            the content column the way an absolutely positioned link did. */}
+        <Link to="/blog" className="go_back" aria-label="Zurück zum Blog">
+          &#8592;
+        </Link>
         <h1 id="blog_title">{post.title}</h1>
         <h2 id="blog_sub_title">{post.sub_title}</h2>
 
         {body ?? (
           <p className="repo_status">
-            This post has not been written yet — more information is coming
-            soon.
+            Dieser Beitrag ist noch nicht geschrieben — mehr Informationen
+            folgen in Kürze.
           </p>
         )}
       </div>
