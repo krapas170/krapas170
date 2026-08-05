@@ -206,7 +206,6 @@ body {
 }
 
 #forks,
-#blog,
 #about_page,
 #contact_page,
 #not_found {
@@ -330,6 +329,16 @@ body {
 
 #blogs {
   columns: 2 !important;
+}
+
+/* Each card is a link to its own post page. `display: block` makes the anchor
+   participate in the multi-column flow, `break-inside: avoid` stops a card
+   from being split across the column boundary. */
+#blogs a {
+  display: block;
+  color: var(--text-color);
+  text-decoration: none;
+  break-inside: avoid;
 }
 
 #blog_title {

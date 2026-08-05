@@ -1,29 +1,35 @@
 import { Container } from "react-bootstrap";
-import posts from "../utils/blog.json";
+import { Link } from "react-router-dom";
+import { resolveImage, visiblePosts } from "../utils/blogPosts";
 
 function Blog() {
-  const visiblePosts = posts.filter((post) => post.visible);
-
   return (
-    <Container id="blog">
+    <Container id="blog_section">
       <h1>Blog</h1>
       <p>More information about my current work</p>
-      <div id="blogs" className="projects">
+      {/* #blogs is a CSS multi-column container (columns: 2), not a grid —
+          see index.css. Cards must be plain flow content for it to work. */}
+      <div id="blogs">
         {visiblePosts.length === 0 ? (
           <p className="repo_status">No posts published yet.</p>
         ) : (
-          <div className="repo_grid">
-            {visiblePosts.map((post) => (
-              <article key={post.url_title}>
+          visiblePosts.map((post) => {
+            const image = resolveImage(post.top_image);
+
+            return (
+              <Link key={post.url_title} to={`/blog/${post.url_title}`}>
                 <section>
-                  <div className="section_title">{post.title}</div>
-                  <div className="about_section">
-                    <span style={{ display: "block" }}>{post.sub_title}</span>
+                  {image && <img src={image} alt="" />}
+                  <div className="blog_container">
+                    <div className="section_title">{post.title}</div>
+                    <div className="about_section">
+                      <span style={{ display: "block" }}>{post.sub_title}</span>
+                    </div>
                   </div>
                 </section>
-              </article>
-            ))}
-          </div>
+              </Link>
+            );
+          })
         )}
       </div>
     </Container>
