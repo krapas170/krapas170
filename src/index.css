@@ -385,6 +385,154 @@ body {
   font-size: 26px;
   margin-left: 5vw;
   margin-top: 4vh;
+  text-decoration: none;
+}
+
+/* The original page set this gradient from index.js after reading the theme
+   out of config.json. There is only one theme, so it lives in CSS now. */
+#background_overlay {
+  background: linear-gradient(0deg, rgba(10, 10, 10, 1), rgba(10, 10, 10, 0.1));
+}
+
+/* --- GitHub-style release cards -------------------------------------------
+   The original static page pulled in github.githubassets.com stylesheets for
+   this. Those hashed URLs now return 404, so the look is rebuilt here against
+   GitHub's dark palette. */
+
+.current_version {
+  color: var(--blog-gray-color);
+}
+
+.release_card {
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  margin: 3vh 0px;
+  overflow: hidden;
+}
+
+.release_body {
+  padding: 16px;
+}
+
+.release_body h2 {
+  font-size: 24px;
+  margin: 0px 0px 12px;
+}
+
+.release_body h2 a,
+.markdown-body a {
+  color: #4493f8;
+  text-decoration: none;
+}
+
+.release_body h2 a:hover,
+.markdown-body a:hover {
+  text-decoration: underline;
+}
+
+.markdown-body {
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.markdown-body h2,
+.markdown-body h3 {
+  font-size: 18px;
+  margin: 16px 0px 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #30363d;
+}
+
+.markdown-body p {
+  margin: 8px 0px !important;
+  font-size: 15px !important;
+  line-height: 1.6 !important;
+}
+
+.markdown-body ul {
+  margin: 8px 0px;
+  padding-left: 2em;
+}
+
+.markdown-body li {
+  margin: 4px 0px;
+}
+
+.markdown-body code,
+.markdown-body tt {
+  padding: 0.2em 0.4em;
+  margin: 0;
+  font-size: 85%;
+  background-color: rgba(158, 167, 179, 0.4);
+  border-radius: 6px;
+}
+
+.release_footer {
+  padding: 16px;
+  border-top: 1px solid #30363d;
+  background: #161b22;
+}
+
+.release_footer h3 {
+  font-size: 16px;
+  margin: 0px 0px 12px;
+}
+
+.counter {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 0px 6px;
+  font-size: 12px;
+  line-height: 18px;
+  border-radius: 2em;
+  background: rgba(158, 167, 179, 0.25);
+}
+
+.release_assets {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+}
+
+.release_assets li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-top: 1px solid #30363d;
+}
+
+.release_assets li:first-child {
+  border-top: none;
+}
+
+.release_assets a {
+  color: #4493f8;
+  text-decoration: none;
+  font-weight: bold;
+  word-break: break-all;
+}
+
+.release_assets a:hover {
+  text-decoration: underline;
+}
+
+.octicon {
+  fill: #8b949e;
+  flex-shrink: 0;
+}
+
+.asset_size {
+  margin-left: auto;
+  color: #8b949e;
+  white-space: nowrap;
+}
+
+.release_empty {
+  color: var(--blog-gray-color);
+  margin: 0;
 }
 
 ::selection {
