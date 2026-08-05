@@ -13,11 +13,23 @@
 # HSTS is deliberately absent — enable it once per zone under
 # SSL/TLS > Edge Certificates > HSTS, otherwise Cloudflare's own header and this
 # one get joined into an invalid value.
+#
+# The CSP below is looser than it would otherwise be, to host the Java Memory
+# game (see the blog post). CheerpJ's runtime dynamically imports a blob URL and
+# instantiates WebAssembly, so script-src needs `blob:` and `'wasm-unsafe-eval'`
+# on top of its origin. This cannot be scoped to just the game's path: browsers
+# enforce multiple CSP headers as an intersection, so a second, looser rule
+# would not lift the strict one. `'wasm-unsafe-eval'` permits WebAssembly
+# compilation only — it does not enable eval() for JavaScript.
+#
+# frame-ancestors and X-Frame-Options allow same-origin framing because the blog
+# post embeds the game in an iframe. They were 'none'/DENY, which blocks framing
+# even from the same origin.
 
 /*
-  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://api.github.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'wasm-unsafe-eval' blob: https://cjrtnc.leaningtech.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' https://api.github.com https://cjrtnc.leaningtech.com; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; object-src 'none'
   X-Content-Type-Options: nosniff
-  X-Frame-Options: DENY
+  X-Frame-Options: SAMEORIGIN
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: geolocation=(), microphone=(), camera=()
   Cross-Origin-Opener-Policy: same-origin

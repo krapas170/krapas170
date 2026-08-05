@@ -1,4 +1,5 @@
 import ReleaseList from "../../components/ReleaseList";
+import GameEmbed from "./GameEmbed";
 import preview from "../../img/blog/memory-game-preview.png";
 
 // Translated from the original English text on the old static page at
@@ -30,6 +31,8 @@ export default function JavaMemory() {
         </a>
         . Das hilft mir, das Spiel zu verbessern.
       </p>
+
+      <GameEmbed />
 
       <img src={preview} alt="Vorschau des Spiels" />
 
