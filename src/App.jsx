@@ -4,6 +4,7 @@ import Footer from "./components/Footer";
 import Sidebar from "./components/Sidebar";
 import About from "./pages/About";
 import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
 import Contact from "./pages/Contact";
 import Forks from "./pages/Forks";
 import NotFound from "./pages/NotFound";
@@ -63,6 +64,7 @@ function AnimatedRoutes() {
           <Route path="/about" element={<About />} />
           <Route path="/forks" element={<Forks />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
