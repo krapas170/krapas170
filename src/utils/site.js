@@ -8,7 +8,8 @@ export const GITHUB_USERNAME = site.username;
 export const DISPLAY_NAME = site.name;
 export const EMAIL = "krapas170@gmail.com";
 export const WEBSITE = "https://krapas170.de";
-export const LOCATION = "Allgäu, Germany";
+export const LOCATION = "Allgäu, Deutschland";
+export const MAIL_SUBJECT = "Kontakt über deine Website";
 
 export const SOCIALS = [
   site.linkedin && {

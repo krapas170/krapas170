@@ -1,14 +1,25 @@
+/* Height is pinned to --header-height so #display can reserve exactly that much
+   at the top. Keep the two in sync: 3vh padding top and bottom plus one 24px
+   line of nav text. */
+:root {
+  --header-height: calc(6vh + 24px);
+}
+
 header {
   width: 100vw;
   text-align: center;
   padding: 3vh 0px;
   position: fixed;
   z-index: 100;
+  /* Translucent so content stays visible as it scrolls underneath; the blur
+     keeps the nav labels readable over whatever passes below. */
   background-image: linear-gradient(
     to right,
-    rgba(0, 0, 0, 0) 24vw,
-    rgba(0, 0, 0, 0.8) 30vw
+    rgba(10, 10, 10, 0) 24vw,
+    rgba(10, 10, 10, 0.72) 30vw
   );
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   /*background-color: rgba(0, 0, 0, 0.8);*/
   /*height: calc(3vh - 20px);*/
 }
@@ -18,6 +29,9 @@ header a {
   text-decoration: none;
   margin-left: 4vw;
   font-weight: bold;
+  /* Fixed line box so --header-height stays exact regardless of the font. */
+  line-height: 24px;
+  display: inline-block;
 }
 
 .navbar-brand {
@@ -44,12 +58,21 @@ header a {
   border-bottom: 2px solid #007bff;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 800px) {
+  /* Narrow screens have no sidebar to keep clear, so the bar is opaque across
+     its whole width instead of fading in from 24vw. */
+  :root {
+    --header-height: calc(2rem + 24px);
+  }
+
   header {
     width: 100%;
-    padding: 1.5rem 0;
-    background-color: rgba(0, 0, 0, 0.8);
-    height: calc(3vh - 20px);
+    padding: 1rem 0;
+    background-image: none;
+    background-color: rgba(10, 10, 10, 0.72);
+    /* The old `height: calc(3vh - 20px)` resolved to about zero and the nav
+       spilled out of its own bar. */
+    height: auto;
   }
 
   .navbar-brand {

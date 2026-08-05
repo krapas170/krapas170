@@ -6,6 +6,7 @@ import {
   EMPLOYERS,
   GITHUB_USERNAME,
   LOCATION,
+  MAIL_SUBJECT,
   SOCIALS,
   WEBSITE,
 } from "../utils/site";
@@ -43,7 +44,7 @@ const Profile = () => {
           <span>
             <i className="fa-solid fa-envelope" aria-hidden="true"></i> &nbsp;{" "}
             <a
-              href={`mailto:${EMAIL}?subject=I%20contact%20you%20over%20your%20website`}
+              href={`mailto:${EMAIL}?subject=${encodeURIComponent(MAIL_SUBJECT)}`}
             >
               {EMAIL}
             </a>

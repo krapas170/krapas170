@@ -71,7 +71,7 @@ function renderInline(text, keyPrefix) {
  */
 export default function ReleaseNotes({ body }) {
   if (!body || !body.trim()) {
-    return <p className="release_empty">No release notes.</p>;
+    return <p className="release_empty">Keine Versionshinweise.</p>;
   }
 
   const blocks = [];

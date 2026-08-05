@@ -2,21 +2,21 @@
     {
         "url_title": "java-memory",
         "title": "Java Memory",
-        "sub_title": "Here you can get all information and versions of the classic card game Memory, which I programmed with Java for school.",
+        "sub_title": "Hier findest du alle Informationen und Versionen zum Kartenspiel-Klassiker Memory, den ich in der Schule mit Java programmiert habe.",
         "top_image": "memory-game-icon.png",
         "visible": true
     },
     {
         "url_title": "beater",
         "title": "Beater Bot",
-        "sub_title": "More information about this project is coming soon",
+        "sub_title": "Mehr Informationen zu diesem Projekt folgen in Kürze",
         "top_image": "coming_soon_negate.png",
         "visible": true
     },
     {
         "url_title": "gameserver-live",
         "title": "Gameserver Live Bot",
-        "sub_title": "More information about this project is coming soon",
+        "sub_title": "Mehr Informationen zu diesem Projekt folgen in Kürze",
         "top_image": "coming_soon_negate.png",
         "visible": true
     },

@@ -1,36 +1,37 @@
 import ReleaseList from "../../components/ReleaseList";
 import preview from "../../img/blog/memory-game-preview.png";
 
-// Text carried over verbatim from the original static page at
+// Translated from the original English text on the old static page at
 // krapas170.github.io/blog/java-memory/.
 export default function JavaMemory() {
   return (
     <>
       <p>
-        At school we started programming a very popular game. Unfortunately, we
-        didn&apos;t completely finish programming it, so I thought to myself:
-        why not finish the game?
+        In der Schule haben wir angefangen, ein sehr bekanntes Spiel zu
+        programmieren. Leider haben wir es nie ganz fertig bekommen — also
+        dachte ich mir: Warum das Spiel nicht selbst zu Ende bringen?
         <br />
-        <strong>Said and done!</strong>
+        <strong>Gesagt, getan!</strong>
         <br />
-        Now the game is finally finished and you can download it directly from
-        my website. Simply click on the correct file below and install it.
+        Jetzt ist das Spiel endlich fertig und du kannst es direkt hier
+        herunterladen. Einfach unten die passende Datei anklicken und
+        installieren.
       </p>
       <p>
-        If you have problems installing or starting the game, feel free to
-        contact me. Found a bug or have a suggestion for the game? Then simply
-        report it{" "}
+        Falls es beim Installieren oder Starten hakt, melde dich gerne bei mir.
+        Einen Fehler gefunden oder einen Vorschlag für das Spiel? Dann melde ihn
+        einfach{" "}
         <a
           href="https://github.com/krapas170/Java-Memory/issues"
           target="_blank"
           rel="noopener noreferrer"
         >
-          here
+          hier
         </a>
-        . This helps me to improve the game.
+        . Das hilft mir, das Spiel zu verbessern.
       </p>
 
-      <img src={preview} alt="Preview of the game" />
+      <img src={preview} alt="Vorschau des Spiels" />
 
       <ReleaseList repo="krapas170/Java-Memory" />
     </>

@@ -10,13 +10,13 @@ function Forks() {
   return (
     <Container id="forks">
       <h1>Forks</h1>
-      <p>My last four forked repositories on GitHub</p>
+      <p>Meine vier zuletzt geforkten Repositories auf GitHub</p>
       <div className="projects" id="forks_section">
         <RepoGrid
           repos={repos}
           loading={loading}
           error={error}
-          emptyMessage="No forked repositories to show yet."
+          emptyMessage="Noch keine geforkten Repositories vorhanden."
         />
       </div>
     </Container>

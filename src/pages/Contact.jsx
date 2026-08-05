@@ -1,18 +1,16 @@
 import { Container } from "react-bootstrap";
-import { EMAIL, LOCATION, SOCIALS, WEBSITE } from "../utils/site";
+import { EMAIL, LOCATION, MAIL_SUBJECT, SOCIALS, WEBSITE } from "../utils/site";
 
 function Contact() {
   return (
     <Container id="contact_page">
-      <h1>Contact</h1>
-      <p>How to reach me</p>
+      <h1>Kontakt</h1>
+      <p>So erreichst du mich</p>
 
       <ul className="contact_list">
         <li>
           <i className="fa-solid fa-envelope" aria-hidden="true"></i> &nbsp;
-          <a
-            href={`mailto:${EMAIL}?subject=I%20contact%20you%20over%20your%20website`}
-          >
+          <a href={`mailto:${EMAIL}?subject=${encodeURIComponent(MAIL_SUBJECT)}`}>
             {EMAIL}
           </a>
         </li>
