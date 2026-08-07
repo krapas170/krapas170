@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="de">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Memory</title>
+  <style>
+    html,
+    body {
+      margin: 0;
+      background: #111;
+      color: #eee;
+      font-family: system-ui, sans-serif;
+      overflow: hidden;
+    }
+
+    #ladehinweis,
+    #beendet {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    #beendet {
+      display: none;
+      background: rgba(17, 17, 17, .92);
+      z-index: 10;
+    }
+
+    #buehne {
+      width: 900px;
+      height: 780px;
+      transform-origin: top left;
+    }
+
+    button {
+      font: inherit;
+      color: #eee;
+      background: #222;
+      border: 1px solid #444;
+      border-radius: 6px;
+      padding: .6rem 1.2rem;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+
+    button:hover {
+      background: #2c2c2c;
+    }
+
+    .klein {
+      font-size: .85em;
+      opacity: .7;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="ladehinweis">
+    <div>
+      <p>Das Spiel wird geladen …</p>
+      <p class="klein">
+        Beim ersten Mal werden einige Megabyte Laufzeitumgebung geladen.
+      </p>
+    </div>
+  </div>
+
+  <!-- Shown once the JVM exits, so "Beenden" leaves a way back instead of a
+       dead canvas. -->
+  <div id="beendet">
+    <div>
+      <p>Das Spiel wurde beendet.</p>
+      <button type="button" onclick="location.reload()">Neu starten</button>
+    </div>
+  </div>
+
+  <div id="buehne"></div>
+
+  <script src="https://cjrtnc.leaningtech.com/4.3/loader.js"></script>
+  <script type="module">
+    const buehne = document.getElementById("buehne");
+    const ladehinweis = document.getElementById("ladehinweis");
+
+    // The Swing window has fixed pixel dimensions. Scale it down on narrow
+    // screens rather than letting it get cut off.
+    function skaliere() {
+      const f = Math.min(1, window.innerWidth / 900, window.innerHeight / 780);
+      buehne.style.transform = `scale(${f})`;
+    }
+    window.addEventListener("resize", skaliere);
+    skaliere();
+
+    function fehler(text) {
+      ladehinweis.innerHTML =
+        `<div><p>${text}</p>` +
+        `<p class="klein">Details stehen in der Browser-Konsole.</p></div>`;
+    }
+
+    try {
+      await cheerpjInit({
+        version: 17,
+        // Preferences default to the throwaway filesystem, so high scores would
+        // not survive a reload. /files/ is CheerpJ's IndexedDB-backed mount.
+        javaProperties: ["java.util.prefs.userRoot=/files/prefs"],
+      });
+
+      cheerpjCreateDisplay(900, 780, buehne);
+      ladehinweis.remove();
+
+      // CheerpJ's virtual filesystem mounts /app/ on the web server ROOT, not on
+      // this file's directory — hence the full path.
+      await cheerpjRunJar("/app/blog/java-memory/game/java-memory.jar");
+
+      // Only reached once the JVM has exited, i.e. after System.exit(0).
+      document.getElementById("beendet").style.display = "grid";
+    } catch (e) {
+      console.error(e);
+      fehler("Das Spiel konnte nicht geladen werden.");
+    }
+  </script>
+</body>
+
+</html>
