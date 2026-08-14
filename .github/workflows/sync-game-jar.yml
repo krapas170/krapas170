@@ -1,0 +1,112 @@
+# The playable build under /blog/java-memory/game/ ships a copy of the jar from
+# krapas170/Java-Memory. That copy is frozen at whatever release was current when
+# it was committed, and the game compares itself against version.json on startup
+# — so once it falls behind, the in-browser version starts telling visitors to
+# download a desktop build they do not need.
+#
+# This opens a pull request whenever the embedded jar differs from the latest
+# release, rather than committing straight to main: swapping the jar changes what
+# visitors actually run, and that deserves a look before it deploys.
+
+name: Sync game jar
+
+on:
+  schedule:
+    # Mondays, 04:17 UTC. Off the hour because scheduled runs bunch up there.
+    - cron: "17 4 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Compare embedded jar with the latest release
+        id: check
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          jar=public/blog/java-memory/game/java-memory.jar
+
+          # gh has jq built in, so this needs no jq on the runner.
+          release=repos/krapas170/Java-Memory/releases/latest
+          tag=$(gh api "$release" --jq '.tag_name')
+          url=$(gh api "$release" --jq \
+            '[.assets[] | select(.name == "java-memory.jar") | .browser_download_url][0] // empty')
+
+          if [ -z "$url" ]; then
+            echo "::error::Release $tag has no java-memory.jar asset. \
+          If the asset was renamed, this workflow and the game page both need updating."
+            exit 1
+          fi
+
+          curl -sSfL "$url" -o /tmp/java-memory.jar
+
+          # Guard against a truncated or error-page download replacing a working
+          # jar: a jar is a zip, so it must start with "PK".
+          if [ "$(head -c 2 /tmp/java-memory.jar)" != "PK" ]; then
+            echo "::error::Downloaded file is not a jar."
+            exit 1
+          fi
+
+          if cmp -s /tmp/java-memory.jar "$jar"; then
+            echo "Embedded jar already matches $tag."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            cp /tmp/java-memory.jar "$jar"
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "tag=$tag" >> "$GITHUB_OUTPUT"
+            echo "size=$(du -h "$jar" | cut -f1)" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Open a pull request
+        if: steps.check.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ steps.check.outputs.tag }}
+          SIZE: ${{ steps.check.outputs.size }}
+        run: |
+          set -euo pipefail
+          branch="chore/game-jar-${TAG}"
+
+          if [ -n "$(gh pr list --head "$branch" --state open --json number --jq '.[].number')" ]; then
+            echo "A pull request for $TAG is already open."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -c "$branch"
+          git add public/blog/java-memory/game/java-memory.jar
+          git commit -m "Update the embedded game jar to ${TAG}"
+          git push --force-with-lease -u origin "$branch"
+
+          # Quoted delimiter: the body is markdown full of backticks, and an
+          # unquoted heredoc would have bash run them as command substitutions.
+          # Values go in afterwards through placeholders.
+          cat > /tmp/body.md <<'BODY'
+          Der eingebettete Build unter `/blog/java-memory/game/` lag hinter
+          [`__TAG__`](https://github.com/krapas170/Java-Memory/releases/tag/__TAG__)
+          zurück. Diese Kopie ist jetzt auf dem Stand des Releases (__SIZE__).
+
+          Ohne den Abgleich zeigt die Web-Fassung irgendwann einen Update-Hinweis,
+          der auf einen Desktop-Download verweist — obwohl der Besucher gerade im
+          Browser spielt.
+
+          **Vor dem Mergen einmal anspielen**, das Spiel läuft danach live:
+          `npm run build && npx wrangler dev`, dann `/blog/java-memory/game/`.
+
+          Automatisch erzeugt von `.github/workflows/sync-game-jar.yml`.
+          BODY
+
+          sed -i "s|__TAG__|${TAG}|g; s|__SIZE__|${SIZE}|g" /tmp/body.md
+
+          gh pr create --base main --head "$branch" \
+            --title "Update the embedded game jar to ${TAG}" \
+            --body-file /tmp/body.md
